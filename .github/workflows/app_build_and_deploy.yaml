@@ -28,6 +28,6 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          AWS_REGION: 
+          AWS_REGION: us-east-1
         working-directory: ./build
         run: aws s3 sync . s3://data-finaltest3-dev-12312-123-s3
