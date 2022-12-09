@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "finaltest3"
+  annotations:
+    github.com/project-slug: gabdzo/finaltest3
+spec:
+  type: service
+  owner: user:guest
+  lifecycle: experimental

@@ -1,0 +1,33 @@
+name: Deploy Application
+
+on:
+  workflow_run:
+    workflows: [ "Deploy Infra" ]
+    branches: ["master"]
+    types:
+      - completed
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  buildAndDeployApp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.13.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.0
+      - run: npm ci
+      - run: npm run build --if-present
+
+      - name: Deploy to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_REGION: 
+        working-directory: ./build
+        run: aws s3 sync . s3://data-finaltest3-dev-12312-123-s3
