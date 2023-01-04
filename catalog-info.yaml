@@ -4,7 +4,7 @@ metadata:
   name: "finaltest3"
   annotations:
     github.com/project-slug: gabdzo/finaltest3
-    backstage.io/techdocs-ref: README.md
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: user:guest
